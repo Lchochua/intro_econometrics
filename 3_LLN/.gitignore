@@ -1,0 +1,36 @@
+# Ignore image files
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Ignore data files
+*.csv
+*.tsv
+*.json
+*.xml
+
+# Ignore Excel files
+*.xls
+*.xlsx
+
+# Ignore compressed files
+*.zip
+*.tar.gz
+*.7z
+
+# Ignore backup and temporary files
+*.bak
+*.tmp
+*.log
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore IDE settings
+.vscode/
+.idea/

@@ -1,0 +1,423 @@
+---
+title: "Econometrics I"
+subtitle: "Law of Large Numbers"
+author: "Lasha Chochua"
+date: "2024"
+format:
+  beamer:
+    theme: "CambridgeUS"
+    colortheme: default
+    fonttheme: structurebold
+    aspectratio: 169
+    section-titles: false
+    date-format: "2024"
+header-includes: |
+  \usepackage{tikz}
+  \usepackage{eso-pic}
+  \definecolor{darkred}{RGB}{139,0,0}
+  \setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.45ex,dp=1ex,center]{footline}%
+      \textcolor{darkred}{\textbf{\scriptsize ISET}}
+    \end{beamercolorbox}%
+  }
+---
+
+
+# Why Do Averages Become Reliable with Large Samples?
+
+::::{.columns}
+
+::: {.column width="60%"}
+- Ever wondered why flipping a coin many times results in a nearly perfect 50/50 split?
+
+\vspace{15pt}
+
+- In this lecture, we'll explore the Weak Law of Large Numbers (WLLN) and see how larger samples yield more reliable averages.
+
+\vspace{15pt}
+
+- To get a deeper understanding, we will use R for demonstrations. The Strong Law of Large Numbers (SLLN) will be covered in the next lecture.
+:::
+
+::: {.column width="40%"}
+![](pictures/intro_pic.png)
+:::
+
+::::
+
+
+
+# Sampling - Basics
+
+- To proceed let's recall the concept of random sampling.
+\vspace{10pt}
+  \pause
+
+- Can you recall what a  sample is? A random sample?
+\vspace{10pt}
+  \pause
+
+- A collection of variables $\{X_1, X_2, \dots, X_n\}$ is a **sample** from the distribution $F$ if they are identically distributed with distribution $F$.
+\vspace{10pt}
+  \pause
+- A collection of variables $\{X_1, X_2, \dots, X_n\}$ is a **random sample** if they are mutually independent and identically distributed across $i = 1, \dots, n$.
+
+\vspace{10pt}
+
+  \pause
+
+\footnotesize
+**Note:** When observations are both independent and identically distributed, we refer to them as **iid random variables** or a **random sample**.
+
+
+
+# Introduction
+
+- Let $\{X_n\}$ be a sequence of random variables and $\overline{X}_{n}$ be the sample mean of the first $n$ terms of the sequence:
+
+$$
+\overline{X}_{n} = \frac{1}{n} \sum_{i=1}^{n} X_i
+$$
+
+- A **\textcolor{blue}{Law of Large Numbers}** is a proposition stating a set of conditions that are sufficient to guarantee the convergence of the **\textcolor{blue}{sample mean}** to the **\textcolor{blue}{population mean}**, as the sample size $n$ increases. It is called:
+  - a **\textcolor{blue}{Weak}** Law of Large Numbers (WLLN) if the sequence $\{\overline{X}_{n}\}$ converges in probability;
+  - a **\textcolor{blue}{Strong}** Law of Large Numbers (SLLN) if the sequence $\{\overline{X}_{n}\}$ converges almost surely.
+
+
+
+# Introduction (cont.)
+
+- The Weak Law of Large Numbers (WLLN) involves convergence in probability, while the Strong Law (SLLN) requires almost sure convergence.
+
+\vspace{15pt}
+
+
+- These concepts were introduced in your statistics course.
+
+\vspace{15pt}
+
+- But a quick review can be beneficial.
+
+\vspace{15pt}
+
+- Today we will only cover convergence in probability.
+
+
+
+# Convergence in Probability - Intuition
+
+- Two random variables are "close to each other" if there is a high probability that their difference is very small.
+
+- Let $\{X_n\}$ be a sequence of random variables defined on a sample space. Let $X$ be a random variable and $\epsilon$ a strictly positive number. Consider the probability:
+
+$$
+P(|X_n - X| > \epsilon)
+$$
+
+- $X_n$ is considered far from $X$ when $|X_n - X| > \epsilon$, so this probability measures how likely it is that $X_n$ is far from $X$.
+- If $\{X_n\}$ converges to $X$, then $P(|X_n - X| > \epsilon)$ should decrease as $n$ increases.
+
+
+# Convergence in Probability - Formal Definition
+
+- A sequence of random variables, $X_1, X_2, \ldots$, converges in probability to a random variable $X$ if and only if:
+
+$$
+\lim_{n \to \infty} P(|X_n - X| > \epsilon) = 0 \quad \text{for any } \epsilon > 0.
+$$
+
+- Here, $X$ is called the probability limit of the sequence, and convergence is indicated by:
+
+$$
+X_n \xrightarrow{P} X \quad \text{or by } \quad \text{plim} \, X_n = X \quad \text{as } n \to \infty.
+$$
+
+
+
+# Convergence in Probability - Example
+
+- Let $X$ be a discrete random variable with support $R_X = \{0, 1\}$ and probability mass function:
+$$
+p_X(x) =
+\begin{cases}
+\frac{1}{3}, & \text{if } x = 1, \\
+\frac{2}{3}, & \text{if } x = 0, \\
+0, & \text{otherwise}.
+\end{cases}
+$$
+
+- Consider a sequence of random variables $\{X_n\}$ whose generic term is:
+
+$$
+X_n = \left(1 + \frac{1}{n}\right) X
+$$
+
+- Does $\{X_n\}$ converge in probability to $X$?
+
+\vspace{0.3cm}
+
+\footnotesize
+**\textcolor{blue}{Instruction:}** \textcolor{blue}{Work with the classmate on your left for 3 minutes to figure out the solution.}
+
+
+
+
+
+
+# Convergence in Probability - Example (cont.)
+
+- Take any $\epsilon > 0$. Note that:
+
+$$
+|X_n - X| = \left(1 + \frac{1}{n}\right)X - X = \frac{1}{n}X
+$$
+
+
+- Consider the following cases:
+  - **Case 1:** When $X = 0$, which happens with $\frac{2}{3}$ probability:
+    $$
+    |X_n - X| = \frac{1}{n} \times 0 = 0 \quad \text{so} \quad |X_n - X| \leq \epsilon
+    $$
+  - **Case 2:** When $X = 1$, which happens with $\frac{1}{3}$ probability:
+    $$
+    |X_n - X| = \frac{1}{n} \times 1 = \frac{1}{n}
+    $$
+
+- $|X_n - X| \leq \epsilon$ if and only if $\frac{1}{n} \leq \epsilon$ (i.e., $n \geq \frac{1}{\epsilon}$).
+
+# Convergence in Probability - Example (cont.)
+
+- Therefore:
+
+$$
+P(|X_n - X| \leq \epsilon) =
+\begin{cases}
+\frac{2}{3}, & \text{if } n < \frac{1}{\epsilon} \\
+1, & \text{if } n \geq \frac{1}{\epsilon}
+\end{cases}
+$$
+
+- And:
+
+$$
+P(|X_n - X| > \epsilon) =
+\begin{cases}
+\frac{1}{3}, & \text{if } n < \frac{1}{\epsilon} \\
+0, & \text{if } n \geq \frac{1}{\epsilon}
+\end{cases}
+$$
+
+- Thus, $P(|X_n - X| > \epsilon)$ converges to 0 as $n$ increases.
+
+$$
+\lim_{n \to \infty} P(|X_n - X| > \epsilon) = 0 \quad \text{for any } \epsilon > 0.
+$$
+
+# WLLN - Theorem
+
+
+Let $X_1, X_2, \ldots$ be iid random variables with $\mathbb{E}[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2 < \infty$.
+
+\vspace{15pt}
+
+Define $\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i$. Then, for every $\epsilon > 0$,
+
+$$
+\lim_{n \to \infty} \mathbb{P}\left( |\bar{X}_n - \mu| < \epsilon \right) = 1,
+$$
+
+that is, $\bar{X}_n$ converges in probability to $\mu$.
+
+\vspace{10pt}
+\footnotesize
+- The WLLN asserts that, under general conditions, the sample mean converges to the population mean as $n \to \infty$. 
+- More general versions of the WLLN require only that the mean is finite.
+
+# WLLN - Proof
+##
+
+- The proof is straightforward and uses Chebyshev's Inequality. For every $\epsilon > 0$:
+
+$$
+P\left(|\bar{X}_n - \mu| \geq \epsilon\right) = P\left((\bar{X}_n - \mu)^2 \geq \epsilon^2\right) \leq \frac{\text{Var}(\bar{X}_n)}{\epsilon^2} = \frac{\sigma^2}{n\epsilon^2}
+$$
+
+Thus:
+
+$$
+P\left(|\bar{X}_n - \mu| \geq \epsilon\right) \leq \frac{\sigma^2}{n\epsilon^2}
+$$
+
+- Hence, the probability that $\bar{X}_n$ deviates from $\mu$ by more than $\epsilon$ approaches 0 as $n \to \infty$:
+
+$$
+P\left(|\bar{X}_n - \mu| < \epsilon\right) = 1 - P\left(|\bar{X}_n - \mu| \geq \epsilon\right) \geq 1 - \frac{\sigma^2}{n\epsilon^2} \to 1 \text{ as } n \to \infty.
+$$
+
+
+
+<!--
+# Almost Sure Convergence - Formal Definition
+
+- A sequence of random variables, $X_1, X_2, \ldots$, converges almost surely to a random variable $X$ if, for every $\epsilon > 0$:
+
+$$
+P\left(\lim_{n \to \infty} |X_n - X| < \epsilon\right) = 1.
+$$
+
+
+
+## **Important:**
+  - Notice the similarity between the definitions of convergence in probability and almost sure convergence.
+  
+  - Although they may appear similar, these are very different concepts, with the latter definition (almost sure convergence) being much stronger.
+
+
+# Understanding Almost Sure Convergence
+
+- To understand almost sure convergence, we must recall the basic definition of a random variable.
+- A random variable is a real-valued function defined on a sample space $S$.
+- If a sample space $S$ has elements denoted by $s$, then $X_n(s)$ and $X(s)$ are all functions defined on $S$.
+- Almost sure convergence states that $X_n$ converges to $X$ almost surely if the functions $X_n(s)$ converge to $X(s)$ for all $s \in S$ except perhaps for $s \in N$, where $N \subset S$ and $P(N) = 0$.
+
+\vspace{20pt}
+
+\footnotesize
+**Note:** This type of convergence is similar to pointwise convergence of a sequence of functions, except that the convergence need not occur on a set with probability 0.
+
+
+# Almost Sure Convergence - Example
+
+- Consider the sample space $S$ as the closed interval $[0, 1]$ with a uniform probability distribution.
+
+- Define the random variables $X_n(s) = s + s^n$ and $X(s) = s$.
+
+- For every $s \in [0, 1)$:
+  - $s^n \rightarrow 0$ as $n \rightarrow \infty$, so $X_n(s) \rightarrow s = X(s)$.
+
+- However, at $s = 1$:
+  - $X_n(1) = 2$ for every $n$, so $X_n(1)$ does not converge to $1 = X(1)$.
+
+- But since the convergence occurs on the set $[0, 1)$ where $P([0, 1)) = 1$, $X_n$ converges to $X$ almost surely.
+
+
+# SLLN - Theorem
+
+Let $X_1, X_2, \ldots$ be iid random variables with $\mathbb{E}[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2 < \infty$. Define the sample mean as:
+
+$$
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
+$$
+
+Then, for every $\epsilon > 0$:
+
+$$
+P\left( \lim_{n \to \infty} |\bar{X}_n - \mu| < \epsilon \right) = 1,
+$$
+
+which means $\bar{X}_n$ converges almost surely to $\mu$.
+
+\footnotesize
+- **Note:** We will not prove the SLLN in this course. However, you can find the proof in any advanced statistics textbook.
+
+# WLLN vs. SLLN
+
+- **WLLN** is typically used in applied settings where convergence in probability is sufficient.
+
+\vspace{15pt}
+
+- **SLLN** is used in more theoretical or precise scenarios where almost sure convergence is required.
+-->
+
+# Demonstration of the Law of Large Numbers
+
+::::{.columns}
+
+::: {.column width="60%"}
+- Ever wondered why flipping a coin many times results in a nearly perfect 50/50 split?
+
+\vspace{25pt}
+
+- **Warning:** Do not attempt the strategy shown in the picture—unless you're really, really into flipping coins!
+
+
+
+:::
+
+::: {.column width="40%"}
+![](pictures/pic_end.png){width=100%}
+:::
+
+::::
+
+
+
+# R Code for Coin Flip Simulation
+
+```{r echo=TRUE, size="tiny"}
+# Set the seed for reproducibility
+set.seed(123)
+# Set the maximum number of flips
+max_flips <- 100000
+# Generate a sequence of flip sizes
+flip_sizes <- unique(round(exp(seq(log(10), 
+log(max_flips), length.out = 1000))))
+# Simulate the coin flips
+flips <- rbinom(max_flips, 1, 0.5)
+# Initialize a vector to store the running averages
+running_avg <- numeric(length(flip_sizes))
+# Calculate the running averages for each flip size
+for (i in seq_along(flip_sizes)) {n <- flip_sizes[i]
+  running_avg[i] <- mean(flips[1:n])
+}
+```
+
+# Results of the Coin Flip Simulation 
+
+```{r, fig.width=6, fig.height=4, size="tiny"}
+# Set options to avoid scientific notation
+options(scipen=999)
+# Adjust margins and label size
+par(mgp = c(2, 0.5, 0)) 
+cex.axis <- 0.7  
+# Plot the running averages
+plot(flip_sizes, running_avg, type="l", col="darkblue", lwd=2,
+     xlab="Number of Flips", ylab="Average Number of Heads",
+     cex.axis=cex.axis,  # Apply smaller size to axis labels
+     cex.lab=0.8,  # Smaller size for axis titles
+     main="")
+abline(h=0.5, col="red", lty=2, lwd=2)
+legend("topright", legend=c("Running Average", "Expected Average"),
+       col=c("blue", "red"), lty=c(1, 2), lwd=2, cex=0.8)
+```
+
+\pause
+
+\begin{center} 
+\raisebox{1.5in}[0pt][0pt]{\textbf{\textcolor{blue}{Can anyone interpret the graph?}}} 
+\end{center}
+
+
+
+# Homework: Law of Large Numbers Self-Exploration
+
+- Download the Jupyter notebook **"HW_law_of_large_numbers.ipynb"** from our course's GitHub repository.
+
+\vspace{15pt}
+
+- Work through the notebook, answer the questions, and submit your completed assignment by the start of next week's class.
+
+
+# Takeaway
+
+- The **Law of Large Numbers (LLN)** explains why averages tend to stabilize as the sample size increases.
+  
+- **Weak Law of Large Numbers (WLLN)** ensures that the sample mean converges to the population mean in probability.
+  
+- Practical demonstration: As the number of coin flips increases, the proportion of heads approaches 50%.
+
+- Key takeaway: Larger samples provide more reliable estimates of population parameters, highlighting the importance of sample size in statistical analysis.
+
+\vspace{15pt}
+
+**Note:** Next Week - The Strong Law of Large Numbers.
