@@ -53,7 +53,7 @@ header-includes: |
 \vspace{10pt}
   \pause
 
-- Can you recall what a  sample is? A random sample?
+- Can anyone recall what a sample is? A random sample?
 \vspace{10pt}
   \pause
 
@@ -401,11 +401,12 @@ legend("topright", legend=c("Running Average", "Expected Average"),
 
 # Homework: Law of Large Numbers Self-Exploration
 
-- Download the Jupyter notebook **"HW_law_of_large_numbers.ipynb"** from our course's GitHub repository.
+- Download the Jupyter notebook **"HW_law_of_large_numbers.ipynb"** from our course's [\textcolor{blue}{GitHub repository}](https://github.com/Lchochua/intro_econometrics).
+
 
 \vspace{15pt}
 
-- Work through the notebook, answer the questions, and submit your completed assignment by the start of next week's class.
+- Work through the notebook, answer the questions, and submit your completed assignment in \textcolor{blue}{html} format by the start of next week's class.
 
 
 # Takeaway
