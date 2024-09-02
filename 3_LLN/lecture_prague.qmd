@@ -49,11 +49,11 @@ header-includes: |
 
 # Sampling - Basics
 
-- To proceed let's recall the concept of random sampling.
+- Let's recall the concept of random sampling.
 \vspace{10pt}
   \pause
 
-- Can anyone recall what a sample is? A random sample?
+- Can anyone recollect what a sample is? A random sample?
 \vspace{10pt}
   \pause
 
@@ -66,7 +66,7 @@ header-includes: |
 
   \pause
 
-\footnotesize
+
 **Note:** When observations are both independent and identically distributed, we refer to them as **iid random variables** or a **random sample**.
 
 
@@ -78,6 +78,8 @@ header-includes: |
 $$
 \overline{X}_{n} = \frac{1}{n} \sum_{i=1}^{n} X_i
 $$
+
+\pause
 
 - A **\textcolor{blue}{Law of Large Numbers}** is a proposition stating a set of conditions that are sufficient to guarantee the convergence of the **\textcolor{blue}{sample mean}** to the **\textcolor{blue}{population mean}**, as the sample size $n$ increases. It is called:
   - a **\textcolor{blue}{Weak}** Law of Large Numbers (WLLN) if the sequence $\{\overline{X}_{n}\}$ converges in probability;
@@ -108,13 +110,20 @@ $$
 
 - Two random variables are "close to each other" if there is a high probability that their difference is very small.
 
+\pause
+
 - Let $\{X_n\}$ be a sequence of random variables defined on a sample space. Let $X$ be a random variable and $\epsilon$ a strictly positive number. Consider the probability:
 
 $$
 P(|X_n - X| > \epsilon)
 $$
 
+\pause
+
 - $X_n$ is considered far from $X$ when $|X_n - X| > \epsilon$, so this probability measures how likely it is that $X_n$ is far from $X$.
+
+\pause
+
 - If $\{X_n\}$ converges to $X$, then $P(|X_n - X| > \epsilon)$ should decrease as $n$ increases.
 
 
@@ -136,6 +145,11 @@ $$
 
 # Convergence in Probability - Example
 
+Now, Work with the classmate on your left for \textcolor{red}{3 minutes} to figure out the strategy how to solve the following problem:
+
+\vspace{0.2cm}
+\pause
+
 - Let $X$ be a discrete random variable with support $R_X = \{0, 1\}$ and probability mass function:
 $$
 p_X(x) =
@@ -154,10 +168,9 @@ $$
 
 - Does $\{X_n\}$ converge in probability to $X$?
 
-\vspace{0.3cm}
 
-\footnotesize
-**\textcolor{blue}{Instruction:}** \textcolor{blue}{Work with the classmate on your left for 3 minutes to figure out the solution.}
+
+
 
 
 
@@ -228,8 +241,10 @@ $$
 
 that is, $\bar{X}_n$ converges in probability to $\mu$.
 
-\vspace{10pt}
-\footnotesize
+\vspace{5pt}
+
+\pause
+
 - The WLLN asserts that, under general conditions, the sample mean converges to the population mean as $n \to \infty$. 
 - More general versions of the WLLN require only that the mean is finite.
 
@@ -411,13 +426,23 @@ legend("topright", legend=c("Running Average", "Expected Average"),
 
 # Takeaway
 
+\pause
+
 - The **Law of Large Numbers (LLN)** explains why averages tend to stabilize as the sample size increases.
+
+\pause
   
 - **Weak Law of Large Numbers (WLLN)** ensures that the sample mean converges to the population mean in probability.
+
+\pause
   
 - Practical demonstration: As the number of coin flips increases, the proportion of heads approaches 50%.
 
+\pause
+
 - Key takeaway: Larger samples provide more reliable estimates of population parameters, highlighting the importance of sample size in statistical analysis.
+
+\pause
 
 \vspace{15pt}
 
