@@ -27,21 +27,30 @@ header-includes: |
 
 ::::{.columns}
 
+::: {.column width="40%"}
+![](pictures/intro_pic.png)
+:::
+
 ::: {.column width="60%"}
-- Ever wondered why flipping a coin many times results in a nearly perfect 50/50 split?
+- Ever wondered what happens if you keep flipping a coin infinitely?
 
 \vspace{15pt}
+\pause
 
 - In this lecture, we'll explore the Weak Law of Large Numbers (WLLN) and see how larger samples yield more reliable averages.
 
 \vspace{15pt}
+\pause
 
-- To get a deeper understanding, we will use R for demonstrations. The Strong Law of Large Numbers (SLLN) will be covered in the next lecture.
+- We will use R for demonstrations. 
+
+\vspace{15pt}
+\pause
+
+- The Strong Law of Large Numbers (SLLN) will be covered in the next lecture.
 :::
 
-::: {.column width="40%"}
-![](pictures/intro_pic.png)
-:::
+
 
 ::::
 
@@ -86,23 +95,6 @@ $$
   - a **\textcolor{blue}{Strong}** Law of Large Numbers (SLLN) if the sequence $\{\overline{X}_{n}\}$ converges almost surely.
 
 
-
-# Introduction (cont.)
-
-- The Weak Law of Large Numbers (WLLN) involves convergence in probability, while the Strong Law (SLLN) requires almost sure convergence.
-
-\vspace{15pt}
-
-
-- These concepts were introduced in your statistics course.
-
-\vspace{15pt}
-
-- But a quick review can be beneficial.
-
-\vspace{15pt}
-
-- Today we will only cover convergence in probability.
 
 
 
@@ -349,7 +341,7 @@ which means $\bar{X}_n$ converges almost surely to $\mu$.
 ::::{.columns}
 
 ::: {.column width="60%"}
-- Ever wondered why flipping a coin many times results in a nearly perfect 50/50 split?
+- Ever wondered what happens if you keep flipping a coin infinitely?
 
 \vspace{25pt}
 
